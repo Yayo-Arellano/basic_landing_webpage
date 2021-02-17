@@ -2,7 +2,7 @@ import 'package:basic_landing_webpage/src/content/contact_content.dart';
 import 'package:basic_landing_webpage/src/content/feature_content.dart';
 import 'package:basic_landing_webpage/src/content/home_content.dart';
 import 'package:basic_landing_webpage/src/content/screenshots_content.dart';
-import 'package:basic_landing_webpage/src/navigation_bar/desktop_nav_bar.dart';
+import 'package:basic_landing_webpage/src/navigation_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
 
 final homeKey = new GlobalKey();
@@ -51,7 +51,7 @@ class _MyWebpageState extends State<MyWebpage> {
           width: maxWith,
           child: Column(
             children: [
-              DesktopNavBar(
+              NavBar(
                 isScrolled: isScrolled,
                 homePressed: () => scrollTo(homeKey),
                 featurePressed: () => scrollTo(featureKey),
