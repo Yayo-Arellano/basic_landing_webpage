@@ -1,8 +1,21 @@
+import 'package:basic_landing_webpage/src/widgets/responsive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class ScreenshotsContent extends StatelessWidget {
+class ScreenshotsContent extends ResponsiveWidget {
   const ScreenshotsContent({Key key}) : super(key: key);
+
+  @override
+  Widget buildDesktop(BuildContext context) => ScreenshotsContentResponsive(200);
+
+  @override
+  Widget buildMobile(BuildContext context) => ScreenshotsContentResponsive(24);
+}
+
+class ScreenshotsContentResponsive extends StatelessWidget {
+  final horizontalPadding;
+
+  const ScreenshotsContentResponsive(this.horizontalPadding);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +30,7 @@ class ScreenshotsContent extends StatelessWidget {
             ),
             SizedBox(height: 24),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 200),
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               child: Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
               ),

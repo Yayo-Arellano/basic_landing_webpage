@@ -12,7 +12,7 @@ abstract class ResponsiveWidget extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         print('Responsive Widget: maxWidth:${constraints.maxWidth}, maxHeight:${constraints.maxHeight}');
-        if (constraints.maxWidth <= 650) {
+        if (constraints.maxWidth <= 800) {
           return buildMobile(context);
         } else {
           return buildDesktop(context);
