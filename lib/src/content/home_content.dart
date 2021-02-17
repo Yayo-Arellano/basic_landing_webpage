@@ -19,7 +19,7 @@ class HomeContent extends StatelessWidget {
         children: [
           Container(
             width: width * .3,
-            child: Align(alignment: Alignment.bottomRight, child: Image.asset('images/app_screen.png')),
+            child: Align(alignment: Alignment.bottomRight, child: Image.asset('assets/images/app_screen.png')),
           ),
           SizedBox(width: 24),
           Expanded(
@@ -54,7 +54,7 @@ class _StoreBadges extends StatelessWidget {
         GestureDetector(
           onTap: () => launch(googlePlayURL),
           child: Image.asset(
-            'images/google_play_badge.png',
+            'assets/images/google_play_badge.png',
             height: 60,
             width: 200,
           ),
@@ -63,7 +63,7 @@ class _StoreBadges extends StatelessWidget {
         GestureDetector(
           onTap: () => launch(appStoreURL),
           child: Image.asset(
-            'images/app_store_badge.png',
+            'assets/images/app_store_badge.png',
             height: 60,
             width: 200,
           ),
