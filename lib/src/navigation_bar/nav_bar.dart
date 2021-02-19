@@ -108,7 +108,7 @@ class DesktopNavBar extends StatelessWidget {
   }
 }
 
-class MobileNavBar extends StatelessWidget {
+class MobileNavBar extends StatefulWidget {
   final bool isScrolled;
   final VoidCallback homePressed;
   final VoidCallback featurePressed;
@@ -125,46 +125,98 @@ class MobileNavBar extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final navBarColor = isScrolled ? Colors.blue : Colors.white;
+  _MobileNavBarState createState() => _MobileNavBarState();
+}
 
-    return Container(
-      color: navBarColor,
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
+class _MobileNavBarState extends State<MobileNavBar> {
+  double collapsableHeight = 0.0;
+
+  void setCollapsableHeight(double value) => setState(() => collapsableHeight = value);
+
+  @override
+  Widget build(BuildContext context) {
+    final navBarColor = widget.isScrolled ? Colors.blue : Colors.white;
+    return Stack(
+      children: [
+        AnimatedContainer(
+          margin: EdgeInsets.only(top: 70.0),
+          duration: Duration(milliseconds: 375),
+          curve: Curves.ease,
+          height: collapsableHeight,
+          width: double.infinity,
+          color: Colors.white,
+          child: SingleChildScrollView(
+            child: Column(
               children: [
-                Image.asset(
-                  "assets/images/logo.png",
-                  height: 40.0,
+                NavBarButton(
+                  text: "Home",
+                  onTap: () {
+                    widget.homePressed.call();
+                    setCollapsableHeight(0);
+                  },
                 ),
-                SizedBox(width: 10.0),
-                Text(
-                  "Company Name",
-                  style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black87, fontSize: 32),
+                NavBarButton(
+                  text: "Features",
+                  onTap: () {
+                    widget.featurePressed.call();
+                    setCollapsableHeight(0);
+                  },
+                ),
+                NavBarButton(
+                  text: "Screenshots",
+                  onTap: () {
+                    widget.screenshotsPressed.call();
+                    setCollapsableHeight(0);
+                  },
+                ),
+                NavBarButton(
+                  text: "Contact",
+                  onTap: () {
+                    widget.contactPressed.call();
+                    setCollapsableHeight(0);
+                  },
                 ),
               ],
             ),
-            Row(
-              children: [
-                InkWell(
-                  splashColor: Colors.white60,
-                  onTap: () {
-                    // Open a dialog with the buttons
-                  },
-                  child: Icon(
-                    Icons.menu,
-                    color: Colors.black54,
-                  ),
+          ),
+        ),
+        Container(
+          color: navBarColor,
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: [
+                    Image.asset(
+                      "assets/images/logo.png",
+                      height: 30.0,
+                    ),
+                    SizedBox(width: 10.0),
+                    Text(
+                      "Company Name",
+                      style: TextStyle(fontWeight: FontWeight.w700, color: Colors.black87, fontSize: 32),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    InkWell(
+                      splashColor: Colors.white60,
+                      onTap: () => collapsableHeight > 0.0 ? setCollapsableHeight(0.0) : setCollapsableHeight(240.0),
+                      child: Icon(
+                        Icons.menu,
+                        color: Colors.black54,
+                      ),
+                    )
+                  ],
                 )
               ],
-            )
-          ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
