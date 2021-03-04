@@ -4,7 +4,11 @@ class NavBarButton extends StatefulWidget {
   final VoidCallback onTap;
   final String text;
 
-  const NavBarButton({Key key, this.onTap, this.text}) : super(key: key);
+  const NavBarButton({
+    Key? key,
+    required this.onTap,
+    required this.text,
+  }) : super(key: key);
 
   @override
   _NavBarButtonState createState() => _NavBarButtonState();

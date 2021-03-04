@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 const youtubeVideo = 'https://www.youtube.com/embed/k32xyP3KuWE';
 
 class FeaturesContent extends ResponsiveWidget {
-  FeaturesContent({Key key}) : super(key: key) {
+  FeaturesContent({Key? key}) : super(key: key) {
     ui.platformViewRegistry.registerViewFactory(
         'youtube-video',
         (int viewId) => IFrameElement()

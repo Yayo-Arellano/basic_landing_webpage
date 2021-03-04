@@ -10,12 +10,12 @@ class NavBar extends ResponsiveWidget {
   final VoidCallback contactPressed;
 
   const NavBar({
-    Key key,
-    this.isScrolled,
-    this.homePressed,
-    this.featurePressed,
-    this.screenshotsPressed,
-    this.contactPressed,
+    Key? key,
+    required this.isScrolled,
+    required this.homePressed,
+    required this.featurePressed,
+    required this.screenshotsPressed,
+    required this.contactPressed,
   }) : super(key: key);
 
   @override
@@ -49,12 +49,12 @@ class DesktopNavBar extends StatelessWidget {
   final VoidCallback contactPressed;
 
   const DesktopNavBar({
-    Key key,
-    this.isScrolled,
-    this.homePressed,
-    this.featurePressed,
-    this.screenshotsPressed,
-    this.contactPressed,
+    Key? key,
+    required this.isScrolled,
+    required this.homePressed,
+    required this.featurePressed,
+    required this.screenshotsPressed,
+    required this.contactPressed,
   }) : super(key: key);
 
   @override
@@ -116,12 +116,12 @@ class MobileNavBar extends StatefulWidget {
   final VoidCallback contactPressed;
 
   const MobileNavBar({
-    Key key,
-    this.isScrolled,
-    this.homePressed,
-    this.featurePressed,
-    this.screenshotsPressed,
-    this.contactPressed,
+    Key? key,
+    required this.isScrolled,
+    required this.homePressed,
+    required this.featurePressed,
+    required this.screenshotsPressed,
+    required this.contactPressed,
   }) : super(key: key);
 
   @override

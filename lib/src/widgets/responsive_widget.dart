@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class ResponsiveWidget extends StatelessWidget {
-  const ResponsiveWidget({Key key}) : super(key: key);
+  const ResponsiveWidget({Key? key}) : super(key: key);
 
   Widget buildMobile(BuildContext context);
 

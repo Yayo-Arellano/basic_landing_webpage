@@ -37,7 +37,7 @@ class _MyWebpageState extends State<MyWebpage> {
     super.dispose();
   }
 
-  void scrollTo(GlobalKey key) => Scrollable.ensureVisible(key.currentContext, duration: Duration(milliseconds: 500));
+  void scrollTo(GlobalKey key) => Scrollable.ensureVisible(key.currentContext!, duration: Duration(milliseconds: 500));
 
   @override
   Widget build(BuildContext context) {

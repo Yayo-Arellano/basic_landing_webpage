@@ -6,7 +6,7 @@ const googlePlayURL = 'https://play.google.com/store/apps/details?id=com.google.
 const appStoreURL = 'https://apps.apple.com/tw/app/youtube/id544007664';
 
 class HomeContent extends ResponsiveWidget {
-  const HomeContent({Key key}) : super(key: key);
+  const HomeContent({Key? key}) : super(key: key);
 
   @override
   Widget buildDesktop(BuildContext context) => DesktopHomeContent();

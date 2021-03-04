@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ScreenshotsContent extends ResponsiveWidget {
-  const ScreenshotsContent({Key key}) : super(key: key);
+  const ScreenshotsContent({Key? key}) : super(key: key);
 
   @override
   Widget buildDesktop(BuildContext context) => ScreenshotsContentResponsive(200);
@@ -69,7 +69,7 @@ class ScreenshotsContentResponsive extends StatelessWidget {
 class _Image extends StatelessWidget {
   final String image;
 
-  const _Image({Key key, this.image}) : super(key: key);
+  const _Image({Key? key, required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
