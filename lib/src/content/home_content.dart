@@ -2,7 +2,8 @@ import 'package:basic_landing_webpage/src/widgets/responsive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const googlePlayURL = 'https://play.google.com/store/apps/details?id=com.google.android.youtube';
+const googlePlayURL =
+    'https://play.google.com/store/apps/details?id=com.google.android.youtube';
 const appStoreURL = 'https://apps.apple.com/tw/app/youtube/id544007664';
 
 class HomeContent extends ResponsiveWidget {
@@ -28,7 +29,9 @@ class DesktopHomeContent extends StatelessWidget {
         children: [
           Container(
             width: width * .3,
-            child: Align(alignment: Alignment.bottomRight, child: Image.asset('assets/images/app_screen.png')),
+            child: Align(
+                alignment: Alignment.bottomRight,
+                child: Image.asset('assets/images/app_screen.png')),
           ),
           SizedBox(width: 24),
           Expanded(
@@ -45,7 +48,28 @@ class DesktopHomeContent extends StatelessWidget {
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
                 ),
                 SizedBox(height: 24),
-                AppStoreBadges(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () => launch(googlePlayURL),
+                      child: Image.asset(
+                        'assets/images/google_play_badge.png',
+                        height: 60,
+                        width: 200,
+                      ),
+                    ),
+                    SizedBox(width: 24),
+                    GestureDetector(
+                      onTap: () => launch(appStoreURL),
+                      child: Image.asset(
+                        'assets/images/app_store_badge.png',
+                        height: 60,
+                        width: 200,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           )
@@ -72,7 +96,23 @@ class MobileHomeContent extends StatelessWidget {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
           ),
           SizedBox(height: 24),
-          AppStoreBadges(),
+          GestureDetector(
+            onTap: () => launch(googlePlayURL),
+            child: Image.asset(
+              'assets/images/google_play_badge.png',
+              height: 60,
+              width: 200,
+            ),
+          ),
+          SizedBox(height: 24),
+          GestureDetector(
+            onTap: () => launch(appStoreURL),
+            child: Image.asset(
+              'assets/images/app_store_badge.png',
+              height: 60,
+              width: 200,
+            ),
+          ),
           SizedBox(height: 48),
           Image.asset(
             'assets/images/app_screen.png',
@@ -80,34 +120,6 @@ class MobileHomeContent extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class AppStoreBadges extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () => launch(googlePlayURL),
-          child: Image.asset(
-            'assets/images/google_play_badge.png',
-            height: 60,
-            width: 200,
-          ),
-        ),
-        SizedBox(width: 24),
-        GestureDetector(
-          onTap: () => launch(appStoreURL),
-          child: Image.asset(
-            'assets/images/app_store_badge.png',
-            height: 60,
-            width: 200,
-          ),
-        ),
-      ],
     );
   }
 }
