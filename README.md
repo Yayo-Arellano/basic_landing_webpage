@@ -7,6 +7,10 @@ The main purpose of this example is creating a responsive landing website. Check
 
 State management: [Riverpod](https://pub.dev/packages/hooks_riverpod)
 
+# Video
+[![Youtube](https://github.com/Yayo-Arellano/basic_landing_webpage/blob/master/screenshots/youtube.png?raw=true)](https://youtu.be/rAVaMRXVCIs)
+
+
 # Screenshots
-![Image 1](https://github.com/Yayo-Arellano/basic_landing_webpage/blob/master/images/Image1.png?raw=true)  
+![Image 1](https://github.com/Yayo-Arellano/basic_landing_webpage/blob/master/screenshots/image1.png?raw=true)  
 
