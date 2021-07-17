@@ -25,7 +25,6 @@ class DesktopHomeContent extends StatelessWidget {
     return Container(
       height: height * .65,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             width: width * .3,

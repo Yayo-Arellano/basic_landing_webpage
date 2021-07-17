@@ -4,45 +4,47 @@ import 'package:basic_landing_webpage/src/content/home_content.dart';
 import 'package:basic_landing_webpage/src/content/screenshots_content.dart';
 import 'package:basic_landing_webpage/src/navigation_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 final homeKey = new GlobalKey();
 final featureKey = new GlobalKey();
 final screenshotKey = new GlobalKey();
 final contactKey = new GlobalKey();
 
-class MyWebpage extends StatefulWidget {
-  @override
-  _MyWebpageState createState() => _MyWebpageState();
-}
+final currentPageProvider = StateProvider<GlobalKey>((_) => homeKey);
+final scrolledProvider = StateProvider<bool>((_) => false);
 
-class _MyWebpageState extends State<MyWebpage> {
-  var isScrolled = false;
-  final controller = ScrollController();
+class MyWebPage extends HookConsumerWidget {
+  void onScroll(ScrollController controller, WidgetRef ref) {
+    final isScrolled = ref.read(scrolledProvider).state;
 
-  @override
-  void initState() {
-    super.initState();
-    controller.addListener(() {
-      if (controller.position.pixels > 5 && !isScrolled) {
-        setState(() => isScrolled = true);
-      } else if (controller.position.pixels <= 5 && isScrolled) {
-        setState(() => isScrolled = false);
-      }
-    });
+    if (controller.position.pixels > 5 && !isScrolled) {
+      ref.read(scrolledProvider).state = true;
+    } else if (controller.position.pixels <= 5 && isScrolled) {
+      ref.read(scrolledProvider).state = false;
+    }
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  void scrollTo(GlobalKey key) => Scrollable.ensureVisible(key.currentContext!, duration: Duration(milliseconds: 500));
+  void scrollTo(GlobalKey key) =>
+      Scrollable.ensureVisible(key.currentContext!, duration: Duration(milliseconds: 500));
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _controller = useScrollController();
+
+    // How to set a listener: https://stackoverflow.com/a/63832263/3479489
+    useEffect(() {
+      _controller.addListener(() => onScroll(_controller, ref));
+      return _controller.dispose;
+    }, [_controller]);
+
+
     double width = MediaQuery.of(context).size.width;
     double maxWith = width > 1200 ? 1200 : width;
+
+    ref.watch(currentPageProvider).addListener(scrollTo, fireImmediately: false);
+
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -51,16 +53,10 @@ class _MyWebpageState extends State<MyWebpage> {
           width: maxWith,
           child: Column(
             children: [
-              NavBar(
-                isScrolled: isScrolled,
-                homePressed: () => scrollTo(homeKey),
-                featurePressed: () => scrollTo(featureKey),
-                screenshotsPressed: () => scrollTo(screenshotKey),
-                contactPressed: () => scrollTo(contactKey),
-              ),
+              NavBar(),
               Expanded(
                 child: SingleChildScrollView(
-                  controller: controller,
+                  controller: _controller,
                   child: Column(
                     children: <Widget>[
                       HomeContent(key: homeKey),

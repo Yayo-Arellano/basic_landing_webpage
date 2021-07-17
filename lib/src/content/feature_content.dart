@@ -9,10 +9,11 @@ const youtubeVideo = 'https://www.youtube.com/embed/k32xyP3KuWE';
 class FeaturesContent extends ResponsiveWidget {
   FeaturesContent({Key? key}) : super(key: key) {
     ui.platformViewRegistry.registerViewFactory(
-        'youtube-video',
-        (int viewId) => IFrameElement()
-          ..src = youtubeVideo
-          ..style.border = 'none');
+      'youtube-video',
+      (int viewId) => IFrameElement()
+        ..src = youtubeVideo
+        ..style.border = 'none',
+    );
   }
 
   @override
@@ -50,8 +51,8 @@ class FeaturesContentResponsive extends StatelessWidget {
             Container(
               width: 800,
               height: 450,
-              child: HtmlElementView(viewType: 'youtube-video'),
-            ),
+              child: HtmlElementView(viewType: 'youtube-video', key: UniqueKey()),
+            )
           ],
         ),
       ),

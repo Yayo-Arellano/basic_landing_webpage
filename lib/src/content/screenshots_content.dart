@@ -82,3 +82,15 @@ class _Image extends StatelessWidget {
     );
   }
 }
+
+class ScreenShotsContent extends StatelessWidget {
+  const ScreenShotsContent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+      height: 250,
+    );
+  }
+}

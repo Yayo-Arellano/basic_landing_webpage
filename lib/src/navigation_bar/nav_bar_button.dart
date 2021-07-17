@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class NavBarButton extends StatefulWidget {
+class NavBarButton extends HookConsumerWidget {
   final VoidCallback onTap;
   final String text;
 
@@ -11,40 +13,31 @@ class NavBarButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _NavBarButtonState createState() => _NavBarButtonState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final textColor = useState<Color>(Colors.black);
 
-class _NavBarButtonState extends State<NavBarButton> {
-  Color color = Colors.black45;
-  FontWeight fontWeight = FontWeight.w600;
-
-  @override
-  Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (value) {
-        setState(() {
-          color = Colors.deepPurple;
-          fontWeight = FontWeight.w800;
-        });
+        textColor.value = Colors.blue;
       },
       onExit: (value) {
-        setState(() {
-          color = Colors.black45;
-          fontWeight = FontWeight.w600;
-        });
+        textColor.value = Colors.black;
       },
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          splashColor: Colors.white60,
-          onTap: widget.onTap,
+          onTap: onTap,
           child: Container(
             height: 50,
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.center,
             margin: EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              widget.text,
-              style: TextStyle(fontWeight: fontWeight, color: color, fontSize: 15),
+              text,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: textColor.value,
+              ),
             ),
           ),
         ),

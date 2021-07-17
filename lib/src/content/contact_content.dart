@@ -86,7 +86,7 @@ class MobileContactContent extends StatelessWidget {
             Container(
               height: 400,
               width: 400,
-              child: HtmlElementView(viewType: 'google-maps'),
+              child: HtmlElementView(viewType: 'google-maps', key: UniqueKey()),
             ),
           ],
         ),
